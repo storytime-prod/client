@@ -29,16 +29,6 @@
     color: var(--card-bg, #23272f);
 }
 
-.main-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100vw;
-    padding: 0;
-}
-
 @media (max-width: 600px) {
     .theme-toggle-container {
         top: 0.5rem;
