@@ -1,0 +1,122 @@
+@import './reset.css';
+
+:root {
+  /* Base font stack for high readability */
+  font-family: 'Inter', 'Merriweather', 'Source Serif Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  background: var(--background);
+  color: var(--text);
+}
+
+/* Light Theme */
+[data-theme='light'] {
+  --background: #fff;
+  --text: #222;
+  --card-bg: #f9f9f9;
+  --accent: #0077ff;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --background: #181a1b;
+  --text: #eaeaea;
+  --card-bg: #23272f;
+  --accent: #4f8cff;
+}
+
+/* Natural Dark Theme */
+[data-theme='natural-dark'] {
+  --background: #23291e;
+  --text: #e3e1d9;
+  --card-bg: #2e3624;
+  --accent: #a3c672;
+}
+
+/* Oceanic Theme */
+[data-theme='oceanic'] {
+  --background: #0e2233;
+  --text: #e0f7fa;
+  --card-bg: #17445e;
+  --accent: #00bcd4;
+}
+
+/* Hell Theme */
+[data-theme='hell'] {
+  --background: #1a0000;
+  --text: #ffb3b3;
+  --card-bg: #330000;
+  --accent: #ff3333;
+}
+
+/* Pacific Theme */
+[data-theme='pacific'] {
+  --background: #e0f7fa;
+  --text: #00334d;
+  --card-bg: #b2ebf2;
+  --accent: #00796b;
+}
+
+/* Reader's Mode Theme */
+[data-theme='readers'] {
+  --background: #f4f1ee;
+  --text: #222222;
+  --card-bg: #fffdfa;
+  --accent: #b48a78;
+}
+
+/* Dark Reader's Mode Theme */
+[data-theme='dark-readers'] {
+  --background: #181a1b;
+  --text: #e3cba6;
+  --card-bg: #23201a;
+  --accent: #b48a78;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: inherit;
+  transition: background 0.3s, color 0.3s;
+}
+
+.card {
+  padding: 2em;
+  background: var(--card-bg, #f9f9f9);
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: inherit;
+}
+
+/* Accent utility class */
+.accent {
+  color: var(--accent);
+}
+
+/* Headings for better readability */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Merriweather', 'Inter', serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Paragraphs and text */
+p,
+li,
+blockquote {
+  font-family: inherit;
+  font-size: 1.05em;
+  margin-bottom: 1em;
+}

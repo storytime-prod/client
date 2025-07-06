@@ -1,0 +1,125 @@
+.theme-toggle-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+}
+
+.theme-toggle {
+    width: 2.5em;
+    height: 2.5em;
+    background: var(--card-bg, #23272f);
+    color: var(--accent, #4f8cff);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    padding: 0;
+}
+
+.theme-toggle:hover {
+    background: var(--accent, #4f8cff);
+    color: var(--card-bg, #23272f);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 0;
+}
+
+.loading {
+    margin-top: 2em;
+    font-size: 1.2em;
+    color: var(--accent, #0077ff);
+}
+
+.the-end {
+    margin-top: 2em;
+    font-size: 1.3em;
+    color: var(--accent, #b48a78);
+    font-weight: 600;
+}
+
+.bottom-navbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card-bg, #fff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5em;
+    z-index: 1001;
+    gap: 0.5em;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 1.7em;
+    cursor: pointer;
+    color: var(--accent, #0077ff);
+    padding: 0.2em 1.2em;
+    border-radius: 1.5em;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn.fancy-plus {
+    font-size: 2.1em;
+    color: #fff;
+    background: var(--accent, #0077ff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    border-radius: 50%;
+    width: 2.2em;
+    height: 2.2em;
+    margin: 0 0.5em;
+    padding: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-btn.fancy-plus:hover {
+    background: #005bb5;
+    color: #fff;
+}
+
+.nav-btn:hover:not(.fancy-plus) {
+    background: var(--accent, #0077ff);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .theme-toggle-container {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .theme-toggle {
+        width: 2em;
+        height: 2em;
+        font-size: 1.1em;
+    }
+
+    .bottom-navbar {
+        height: 3em;
+    }
+}

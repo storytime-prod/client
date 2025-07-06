@@ -1,30 +1,47 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+
+import { ref } from 'vue';
+
+// Detect system preference for dark mode
+function getDefaultThemeIdx() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 0; // Dark
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 1; // Light
+    }
+    return 0; // Fallback to Dark
+}
+
+const currentThemeIdx = ref(getDefaultThemeIdx());
+
+const themes = [
+    { name: 'dark', symbol: '🌙' },
+    { name: 'light', symbol: '☀️' },
+    { name: 'natural-dark', symbol: '🌳' },
+    { name: 'oceanic', symbol: '🌊' },
+    { name: 'hell', symbol: '🔥' },
+    { name: 'pacific', symbol: '🏝️' },
+    { name: 'readers', symbol: '📖' },
+    { name: 'dark-readers', symbol: '🌑' }
+];
+
+document.documentElement.setAttribute('data-theme', themes[currentThemeIdx.value].name.toLowerCase());
+
+const nextTheme = () => {
+    currentThemeIdx.value = (currentThemeIdx.value + 1) % themes.length;
+    document.documentElement.setAttribute('data-theme', themes[currentThemeIdx.value].name.toLowerCase());
+};
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="theme-toggle-container">
+    <button class="theme-toggle" @click="nextTheme">
+      {{ themes[currentThemeIdx].symbol }}
+    </button>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+  @import './styles/app.css';
 </style>
