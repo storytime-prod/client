@@ -1,51 +1,41 @@
 <script setup>
-import { ref } from 'vue';
-import mockStories from '../temp/mockStories.json';
+import { onMounted } from 'vue';
 import MarkdownRenderer from './MarkdownRenderer.vue';
-import BranchSelectorModal from './BranchSelectorModal.vue';
+import { useStoryStore } from '../stores/story';
+import axios from 'axios';
+import { useRoute } from 'vue-router';
+import StoryControl from './StoryControl.vue';
 
-const story = ref(mockStories[0]);
-const openBranchSelector = ref(false);
+const route = useRoute()
+const storyId = route.query.id;
 
-const getBranches = () => {
-    openBranchSelector.value = true;
-};
+const storyStore = useStoryStore()
 
-const handleCloseModal = () => {
-    openBranchSelector.value = false;
-};
+const URL = `http://localhost:8000/api/v1/story/${storyId ? 'id/' + storyId : 'random'}`;
+
+onMounted(async () => {
+    const res = await axios.get(URL);
+    if (res.status !== 200) {
+        console.error('Failed to fetch story:', res.statusText);
+        return;
+    }
+    storyStore.setStory(res.data)
+})
+
+
 
 </script>
 
 <template>
-    <div class="story-content">
-        <MarkdownRenderer :source="story.content" />
-        <div class="branch-selector" v-if="story.branches && story.branches.length > 0">
-            <i>The story continues...</i>
-            <button @click="getBranches">
-                Choose a path
-            </button>
-            <BranchSelectorModal v-if="openBranchSelector" @close-branches-modal="handleCloseModal"
-                :branches="story.branches" />
-        </div>
-        <div class="story-footer" v-else>
-            <i>The story line ends here</i>
-        </div>
+    <div v-if="storyStore.story" class="story-content">
+        <MarkdownRenderer :source="storyStore.story.content" />
+        <StoryControl />
     </div>
+
 </template>
 
 <style scoped>
 .story-content {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-}
-
-.branch-selector,
-.story-footer {
-    margin-top: 20px;
-    text-align: right;
+    padding-bottom: 200px;
 }
 </style>

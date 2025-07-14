@@ -1,16 +1,16 @@
 <script setup>
 
 import { ref } from 'vue';
-import StoryContent from './components/StoryContent.vue';
+import Navbar from './components/Navbar.vue';
 
 // Detect system preference for dark mode
 function getDefaultThemeIdx() {
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 0; // Dark
+    return 0;
   } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    return 1; // Light
+    return 1;
   }
-  return 0; // Fallback to Dark
+  return 0;
 }
 
 const currentThemeIdx = ref(getDefaultThemeIdx());
@@ -41,9 +41,12 @@ const nextTheme = () => {
       {{ themes[currentThemeIdx].symbol }}
     </button>
   </div>
-  <StoryContent />
+  <main>
+    <router-view />
+    <Navbar />
+  </main>
 </template>
 
-<style scoped>
+<style>
 @import './styles/app.css';
 </style>

@@ -1,3 +1,5 @@
+@import url('./global.css');
+
 .theme-toggle-container {
     position: fixed;
     top: 1.5rem;
@@ -27,6 +29,12 @@
 .theme-toggle:hover {
     background: var(--accent, #4f8cff);
     color: var(--card-bg, #23272f);
+}
+
+main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 @media (max-width: 600px) {
