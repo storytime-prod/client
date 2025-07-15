@@ -5,10 +5,10 @@ import axios from 'axios';
 
 const storyStore = useStoryStore();
 
-const GET_BRANCHES_URL = `http://localhost:8000/api/v1/story/branches/${storyStore.story.id}`
 const branches = ref([])
 
 onMounted(() => {
+    const GET_BRANCHES_URL = `http://localhost:8000/api/v1/story/branches/${storyStore.story.id}`
     axios.get(GET_BRANCHES_URL).then(res => {
         branches.value = res.data
     }).catch(err => {

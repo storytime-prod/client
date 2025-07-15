@@ -6,10 +6,19 @@ import CreateStory from '../components/CreateStory.vue'
 import ViewBranch from '../components/ViewBranch.vue'
 import ViewBranchRequest from '../components/ViewBranchRequest.vue'
 import CreateBranchPage from '../components/CreateBranchPage.vue'
+import RandomStory from '../components/RandomStory.vue'
+import BranchRequestStory from '../components/BranchRequestStory.vue'
+
+import { useStoryStore } from '../stores/story'
 
 const routes = [
     {
         path: '/',
+        name: 'random_story_page',
+        component: RandomStory
+    },
+    {
+        path: '/specific',
         name: 'story_page',
         component: StoryContent
     },
@@ -38,11 +47,38 @@ const routes = [
         name: 'create_branch_page',
         component: CreateBranchPage
     },
+    {
+        path: '/view-branch-req-story',
+        name: 'review_branch_req_story',
+        component: BranchRequestStory
+    },
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    const storyStore = useStoryStore()
+
+    if (to.name === 'view_branch_page' && !storyStore.story) {
+        return next({ name: 'explore_story_page' })
+    }
+    if (to.name === 'view-branch-req-page' && !storyStore.story) {
+        return next({ name: 'explore_story_page' })
+    }
+    if (to.name === 'view_branch_page' && !storyStore.story) {
+        return next({ name: 'explore_story_page' })
+    }
+    if (to.name === 'create_branch_page' && !storyStore.story) {
+        return next({ name: 'explore_story_page' })
+    }
+    if (to.name === 'review_branch_req_story' && !storyStore.story) {
+        return next({ name: 'explore_story_page' })
+    }
+
+    next()
 })
 
 export default router

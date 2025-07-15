@@ -20,16 +20,18 @@
 <script setup>
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
+import { useStoryStore } from '../stores/story';
 
 const allStories = ref([]);
+const storyStore = useStoryStore();
 
-onMounted(async () => {
-    const res = await axios.get('http://localhost:8000/api/v1/story');
-    if (res.status !== 200) {
-        console.error('Failed to fetch story:', res.statusText);
-        return;
-    }
-    allStories.value = res.data;
+onMounted(() => {
+    storyStore.reset();
+    axios.get('http://localhost:8000/api/v1/story').then(res => {
+        allStories.value = res.data
+    }).catch(err => {
+        console.error(err)
+    });
 });
 
 </script>

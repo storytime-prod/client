@@ -4,10 +4,11 @@ import { useStoryStore } from '../stores/story';
 
 const storyStore = useStoryStore();
 
-const LIKE_URL = `http://localhost:8000/api/v1/story/${storyStore.story.id}/like`
-
 const like_story = () => {
-    axios.put(LIKE_URL).then(res => storyStore.story = res.data)
+    const LIKE_URL = `http://localhost:8000/api/v1/story/${storyStore.story.id}/like`
+    axios.put(LIKE_URL).then(res => {
+        storyStore.setStory(res.data)
+    })
         .catch(err => {
             console.error("something went wrong during like request", err)
         })

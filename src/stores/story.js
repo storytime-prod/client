@@ -7,6 +7,9 @@ export const useStoryStore = defineStore('story', {
     actions: {
         setStory(newStory) {
             this.story = newStory
+        },
+        reset() {
+            this.story = null
         }
     }
 })

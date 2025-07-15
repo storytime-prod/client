@@ -1,18 +1,14 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import MarkdownRenderer from './MarkdownRenderer.vue';
 import { useStoryStore } from '../stores/story';
 import axios from 'axios';
-import { useRoute } from 'vue-router';
 import StoryControl from './StoryControl.vue';
-
-const route = useRoute()
-const storyId = route.query.id;
 
 const storyStore = useStoryStore()
 
 const getStory = () => {
-    const URL = `http://localhost:8000/api/v1/story/id/${storyId}`;
+    const URL = `http://localhost:8000/api/v1/story/random`;
     axios.get(URL).then(res => {
         storyStore.setStory(res.data)
     }).catch(err => console.error(err))
@@ -26,6 +22,10 @@ onMounted(() => {
 
 <template>
     <div v-if="storyStore.story" class="story-content">
+        <button @click="getStory">
+            RANDOM
+        </button>
+
         <MarkdownRenderer :source="storyStore.story.content" />
         <StoryControl />
     </div>
