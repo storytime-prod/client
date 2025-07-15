@@ -15,7 +15,9 @@ const getStory = () => {
 }
 
 onMounted(() => {
-    getStory()
+    if (!storyStore.story) {
+        getStory()
+    }
 })
 
 </script>
