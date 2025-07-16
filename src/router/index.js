@@ -8,6 +8,7 @@ import ViewBranchRequest from '../components/ViewBranchRequest.vue'
 import CreateBranchPage from '../components/CreateBranchPage.vue'
 import RandomStory from '../components/RandomStory.vue'
 import BranchRequestStory from '../components/BranchRequestStory.vue'
+import StoryTree from '../components/StoryTree.vue'
 
 import { useStoryStore } from '../stores/story'
 
@@ -51,6 +52,11 @@ const routes = [
         path: '/view-branch-req-story',
         name: 'review_branch_req_story',
         component: BranchRequestStory
+    },
+    {
+        path: '/see-story-tree',
+        name: 'view_story_tree',
+        component: StoryTree
     },
 ]
 

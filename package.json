@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vue-flow/core": "^1.45.0",
     "axios": "^1.10.0",
     "markdown-it": "^14.1.0",
     "pinia": "^3.0.3",
