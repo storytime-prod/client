@@ -5,7 +5,8 @@
         <router-link :to="{ name: 'explore_story_page' }">Explore</router-link>
         <router-link :to="{ name: 'create_story_page' }">Create Story</router-link>
         <router-link :to="{ name: 'view_story_tree' }">Unleash stories</router-link>
-        <router-link to="/about">About</router-link>
+        <router-link :to="{ name: 'login' }">Login</router-link>
+        <router-link :to="{ name: 'about' }">About</router-link>
 
     </div>
 </template>

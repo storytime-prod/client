@@ -9,8 +9,10 @@ import CreateBranchPage from '../components/CreateBranchPage.vue'
 import RandomStory from '../components/RandomStory.vue'
 import BranchRequestStory from '../components/BranchRequestStory.vue'
 import StoryTree from '../components/StoryTree.vue'
+import Login from '../components/Login.vue'
 
 import { useStoryStore } from '../stores/story'
+import About from '../components/About.vue'
 
 const routes = [
     {
@@ -57,6 +59,16 @@ const routes = [
         path: '/see-story-tree',
         name: 'view_story_tree',
         component: StoryTree
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: About
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     },
 ]
 
