@@ -30,7 +30,7 @@ const createBranchRequest = () => {
         comment: comment.value,
         status: 'pending'
     }
-    axios.post(CREATE_BRANCH_REQUEST_URL, data).then(res => {
+    axios.post(CREATE_BRANCH_REQUEST_URL, data, { withCredentials: true }).then(res => {
     }).catch(err => {
         console.error(err)
     })

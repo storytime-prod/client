@@ -31,11 +31,10 @@ const CREATE_NEW_STORY_URL = 'http://localhost:8000/api/v1/story'
 function create_new_story() {
     const data = {
         title: title.value,
-        author: author.value,
         genre: genre.value,
         content: content.value
     }
-    axios.post(CREATE_NEW_STORY_URL, data).then(res => {
+    axios.post(CREATE_NEW_STORY_URL, data, { withCredentials: true }).then(res => {
         console.log("success ", res.data)
     }).catch(
         err => {

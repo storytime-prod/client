@@ -20,7 +20,7 @@ const getStory = () => {
 
 const approveBranchRequest = () => {
     const APPROVE_BRANCH_REQUEST_URL = `http://localhost:8000/api/v1/branch-req/${requestId}/approve`;
-    axios.put(APPROVE_BRANCH_REQUEST_URL).then(res => { }).catch(err => { console.error(err) })
+    axios.put(APPROVE_BRANCH_REQUEST_URL, null, { withCredentials: true }).then(res => { }).catch(err => { console.error(err) })
 }
 
 onMounted(() => {

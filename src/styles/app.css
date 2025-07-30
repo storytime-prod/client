@@ -31,6 +31,16 @@
     color: var(--card-bg, #23272f);
 }
 
+.user-profile-pic {
+    position: absolute;
+    top: 0.5rem;
+    right: 4.5rem;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 main {
     max-width: 720px;
     margin: 0 auto;

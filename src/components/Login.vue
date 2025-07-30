@@ -1,24 +1,16 @@
 <template>
     <button @click="login">login</button>
-    <button @click="check">CHECK</button>
+    <button @click="logout">logout</button>
 </template>
 
 <script setup>
 
-import axios from 'axios';
-import { ref } from 'vue';
 const login = () => {
     const LOGIN_URL = 'http://localhost:8000/api/v1/login'
-
     window.location.href = LOGIN_URL;
 }
-
-const check = () => {
-    const CHECK_URL = 'http://localhost:8000/api/v1/me'
-    axios.get(CHECK_URL, { withCredentials: true }).then(res => {
-        console.log('Check successful:', res.data)
-    }).catch(err => {
-        console.error('Check failed:', err)
-    })
+const logout = () => {
+    const LOGOUT_URL = 'http://localhost:8000/api/v1/logout'
+    window.location.href = LOGOUT_URL;
 }
 </script>

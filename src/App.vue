@@ -1,7 +1,12 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import Navbar from './components/Navbar.vue';
+import { useUserStore } from './stores/user';
+import { onMounted } from 'vue';
+import axios from 'axios';
+
+const userStore = useUserStore();
 
 // Detect system preference for dark mode
 function getDefaultThemeIdx() {
@@ -33,6 +38,20 @@ const nextTheme = () => {
   document.documentElement.setAttribute('data-theme', themes[currentThemeIdx.value].name.toLowerCase());
 };
 
+const getUser = () => {
+  const USER_URL = 'http://localhost:8000/api/v1/me';
+  axios.get(USER_URL, { withCredentials: true }).then(res => {
+    userStore.setUser(res.data)
+    console.log('User fetched:', res.data)
+  }).catch(err => {
+    console.error('User fetch failed:', err)
+  })
+}
+
+onMounted(() => {
+  getUser()
+});
+
 </script>
 
 <template>
@@ -40,6 +59,11 @@ const nextTheme = () => {
     <button class="theme-toggle" @click="nextTheme">
       {{ themes[currentThemeIdx].symbol }}
     </button>
+    <div class="user-profile-pic">
+      <img v-if="userStore.user" :src="userStore.user.user.picture" alt="User Profile Picture"
+        referrerpolicy="no-referrer" />
+      <span v-else>👤</span>
+    </div>
   </div>
   <main>
     <router-view />
