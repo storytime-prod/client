@@ -1,8 +1,3 @@
-<template>
-    <button @click="login">login</button>
-    <button @click="logout">logout</button>
-</template>
-
 <script setup>
 
 const login = () => {
@@ -13,4 +8,9 @@ const logout = () => {
     const LOGOUT_URL = 'http://localhost:8000/api/v1/logout'
     window.location.href = LOGOUT_URL;
 }
+
 </script>
+<template>
+    <button @click="login">login</button>
+    <button @click="logout">logout</button>
+</template>

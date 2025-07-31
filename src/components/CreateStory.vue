@@ -1,25 +1,10 @@
-<template>
-    <div class="create-title-input">
-        <input type="text" ref="titleInput" placeholder="Enter Title" v-model="title" />
-    </div>
-    <div class="create-author-input">
-        <input type="text" ref="authorInput" placeholder="Enter Author" v-model="author" />
-    </div>
-    <div class="create-genre-input">
-        <input type="text" ref="genreInput" placeholder="Enter Genre" v-model="genre" />
-    </div>
-    <div class="create-content-input">
-        <input type="text" ref="contentInput" placeholder="Enter Content" v-model="content" />
-    </div>
-
-    <button @click="create_new_story">CREATE DA</button>
-
-</template>
-
 <script setup>
 
 import axios from 'axios';
 import { ref } from 'vue';
+import { useUserStore } from '../stores/user';
+
+const userStore = useUserStore()
 
 const title = ref('')
 const author = ref('')
@@ -44,6 +29,23 @@ function create_new_story() {
 }
 
 </script>
+
+<template>
+    <div class="create-title-input">
+        <input type="text" ref="titleInput" placeholder="Enter Title" v-model="title" />
+    </div>
+    <div class="create-author-input">
+        <input type="text" ref="authorInput" placeholder="Enter Author" v-model="author" />
+    </div>
+    <div class="create-genre-input">
+        <input type="text" ref="genreInput" placeholder="Enter Genre" v-model="genre" />
+    </div>
+    <div class="create-content-input">
+        <input type="text" ref="contentInput" placeholder="Enter Content" v-model="content" />
+    </div>
+    <button @click="create_new_story">CREATE DA</button>
+
+</template>
 
 <style scoped>
 .upload-area {

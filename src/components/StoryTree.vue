@@ -1,14 +1,3 @@
-<template>
-
-    <div v-if="tree" class="tree-container">
-        <VueFlow :nodes="tree.nodes" :edges="tree.edges" fit-view :fit-view-on-init="true" />
-    </div>
-    <div v-else>
-        LOADING
-    </div>
-
-</template>
-
 <script setup>
 
 import axios from 'axios';
@@ -35,6 +24,17 @@ onMounted(() => {
 })
 
 </script>
+
+<template>
+
+    <div v-if="tree" class="tree-container">
+        <VueFlow :nodes="tree.nodes" :edges="tree.edges" fit-view :fit-view-on-init="true" />
+    </div>
+    <div v-else>
+        LOADING
+    </div>
+
+</template>
 
 <style scoped>
 .tree-container {

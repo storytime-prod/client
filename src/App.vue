@@ -41,8 +41,7 @@ const nextTheme = () => {
 const getUser = () => {
   const USER_URL = 'http://localhost:8000/api/v1/me';
   axios.get(USER_URL, { withCredentials: true }).then(res => {
-    userStore.setUser(res.data)
-    console.log('User fetched:', res.data)
+    userStore.setUser(res.data?.user)
   }).catch(err => {
     console.error('User fetch failed:', err)
   })
@@ -60,7 +59,7 @@ onMounted(() => {
       {{ themes[currentThemeIdx].symbol }}
     </button>
     <div class="user-profile-pic">
-      <img v-if="userStore.user" :src="userStore.user.user.picture" alt="User Profile Picture"
+      <img v-if="userStore.user" :src="userStore.user.picture" alt="User Profile Picture"
         referrerpolicy="no-referrer" />
       <span v-else>👤</span>
     </div>

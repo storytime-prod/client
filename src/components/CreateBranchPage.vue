@@ -42,6 +42,7 @@ onMounted(() => {
 })
 
 </script>
+
 <template>
     <div class="create-branch-container">
         {{ storyStore.story.title }} ->

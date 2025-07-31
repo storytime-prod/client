@@ -18,6 +18,7 @@ onMounted(() => {
 
 
 </script>
+
 <template>
     <div class="story-list">
         <div v-for="story in branches" :key="story.id" class="story-item">
