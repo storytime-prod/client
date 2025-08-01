@@ -1,9 +1,11 @@
 <script setup>
 
 import axios from 'axios';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useUserStore } from '../stores/user';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const userStore = useUserStore()
 
 const title = ref('')
@@ -28,6 +30,12 @@ function create_new_story() {
     )
 }
 
+onMounted(() => {
+    if (!userStore.user) {
+        router.push({ name: 'login' })
+    }
+})
+
 </script>
 
 <template>
@@ -41,13 +49,22 @@ function create_new_story() {
         <input type="text" ref="genreInput" placeholder="Enter Genre" v-model="genre" />
     </div>
     <div class="create-content-input">
-        <input type="text" ref="contentInput" placeholder="Enter Content" v-model="content" />
+        <textarea type="text" ref="contentInput" placeholder="Enter Content" v-model="content" />
     </div>
     <button @click="create_new_story">CREATE DA</button>
 
 </template>
 
 <style scoped>
+input {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 70vh;
+}
+
 .upload-area {
     border: 2px dashed #aaa;
     border-radius: 8px;

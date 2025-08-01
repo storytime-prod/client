@@ -3,9 +3,12 @@ import { onMounted } from 'vue';
 import MarkdownRenderer from './MarkdownRenderer.vue';
 import { useStoryStore } from '../stores/story';
 import axios from 'axios';
+import { useUserStore } from '../stores/user';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
+const userStore = useUserStore();
+
 const storyId = route.query.id;
 const requestId = route.query.requestId;
 
@@ -32,7 +35,7 @@ onMounted(() => {
 <template>
     <div v-if="storyStore.story" class="story-content">
         <MarkdownRenderer :source="storyStore.story.content" />
-        <button @click="approveBranchRequest">
+        <button v-if="userStore.user" @click="approveBranchRequest">
             APPROVE DA
         </button>
     </div>

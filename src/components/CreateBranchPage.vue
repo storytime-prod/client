@@ -2,6 +2,11 @@
 import { onMounted, ref } from 'vue';
 import { useStoryStore } from '../stores/story';
 import axios from 'axios';
+import { useUserStore } from '../stores/user';
+import { useRouter } from 'vue-router';
+
+const userStore = useUserStore();
+const router = useRouter();
 
 const storyStore = useStoryStore();
 
@@ -38,7 +43,11 @@ const createBranchRequest = () => {
 
 
 onMounted(() => {
-    getBranchableStories()
+    if (!userStore.user) {
+        router.push({ name: 'login' })
+    } else {
+        getBranchableStories()
+    }
 })
 
 </script>

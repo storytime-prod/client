@@ -5,8 +5,12 @@ import Navbar from './components/Navbar.vue';
 import { useUserStore } from './stores/user';
 import { onMounted } from 'vue';
 import axios from 'axios';
+import default_dp from './assets/def_dp.png';
+import UserDetails from './components/UserDetails.vue';
 
 const userStore = useUserStore();
+
+const showUserDetails = ref(false);
 
 // Detect system preference for dark mode
 function getDefaultThemeIdx() {
@@ -58,10 +62,13 @@ onMounted(() => {
     <button class="theme-toggle" @click="nextTheme">
       {{ themes[currentThemeIdx].symbol }}
     </button>
-    <div class="user-profile-pic">
+    <div class="user-profile-pic" @click="showUserDetails = !showUserDetails">
       <img v-if="userStore.user" :src="userStore.user.picture" alt="User Profile Picture"
         referrerpolicy="no-referrer" />
-      <span v-else>👤</span>
+      <img v-else :src="default_dp" alt="User Profile Picture" />
+    </div>
+    <div v-if="showUserDetails" class="user-details">
+      <UserDetails @close="showUserDetails = false" />
     </div>
   </div>
   <main>

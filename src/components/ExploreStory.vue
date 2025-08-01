@@ -20,10 +20,8 @@ onMounted(() => {
 
 <template>
     <div class="search-bar">
-        <input type="text" placeholder="Search stories..." v-model="searchQuery" @input="filterStories" />
-        <button @click="clearSearch">Clear</button>
-
-        <hr />
+        <input type="text" placeholder="Search stories..." v-model="searchQuery" @input="filterStories"
+            style="width: 100%;" />
 
         <div class="story-list">
             <div v-for="story in allStories" :key="story.id" class="story-item">

@@ -24,10 +24,9 @@ onMounted(() => {
 
 <template>
     <div v-if="storyStore.story" class="story-content">
-        <button @click="getStory">
-            RANDOM
-        </button>
-
+        <div @click="getStory" style="font-size: 1.5rem; text-align: right;">
+            🔄
+        </div>
         <MarkdownRenderer :source="storyStore.story.content" />
         <StoryControl />
     </div>
